@@ -18,7 +18,7 @@ class CreateFormulariosTable extends Migration
             $table->string('nome');
             $table->string('email');
             $table->text('descricao');
-            $table->string('upload')->nullable();
+            $table->string('upload');
             $table->timestamps();
         });
     }

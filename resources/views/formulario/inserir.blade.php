@@ -26,12 +26,12 @@
                     <input type="text" id="descricao" name="descricao" class="form-control" required>
                 </div>
                 <div class="wrap-input100 validate-input m-b-16">
-                    <label for="imagem">Imagem: <span class="text-danger">*</span></label>
-                    <input type="file" id="imagem" name="imagem" class="wrap-input100 validate-input m-b-16" accept=".gif,.jpg,.png" autofocus required>
+                    <label for="curriculo">Selecionar imagem para o curriculo: <span class="text-danger">*</span></label>
+                    <input type="file" id="curriculo" name="curriculo" accept="image/*" required>
                 </div>
                 <div>Os campos marcados com <span class="text-danger">*</span> não podem estar em branco.</div>
                 <input type="submit" class="btn btn-success mt-2" value="Inserir">
-                <td><a href="/cadastro"><button class="btn mt-2">Cancelar</button></a></td>
+                <button type="button" onclick="history.go(-1);" class="btn mt-2">Cancelar </button>
             </form>            
         </div>
     </body>

@@ -12,6 +12,10 @@
             <form action="/cadastro/alterar" method="post" class="mt-2">
                 <input type="hidden" name="_token" value="{{{ csrf_token() }}}">
                 <div class="form-group">
+                    <label for="id">Número de Identificação:</label>
+                    <input type="text" id="id" name="id" class="form-control" value="{{ $formulario->id }}" readonly required >
+                </div>
+                <div class="form-group">
                     <label for="nome">Nome: <span class="text-danger">*</span></label>
                     <input type="text" id="nome" name="nome" class="form-control" value="{{ $formulario->nome }}" required >
                 </div>
@@ -24,12 +28,12 @@
                     <input type="text" id="descricao" name="descricao" class="form-control" value="{{ $formulario->descricao }}" required>
                 </div>
                 <div class="wrap-input100 validate-input m-b-16">
-                    <label for="imagem">Imagem: <span class="text-danger">*</span></label>
-                    <input type="file" id="imagem" name="imagem" class="wrap-input100 validate-input m-b-16" accept=".gif,.jpg,.png" value="{{ $formulario->upload }}" required>
+                    <label for="curriculo">Selecionar imagem para o curriculo: <span class="text-danger">*</span></label>
+                    <input type="file" id="curriculo" name="curriculo" accept="image/*" value="{{ $formulario->descricao }}" required>
                 </div>
                 <div>Os campos marcados com <span class="text-danger">*</span> não podem estar em branco.</div>
-                <input type="submit" class="btn btn-success mt-2" value="Alterar">
-                <td><a href="/cadastro/pesquisar"><button class="btn mt-2">Cancelar</button></a></td>
+                <input type="submit" id="submit" class="btn btn-success mt-2" value="Alterar">
+                <button type="button" onclick="history.go(-1);" class="btn mt-2">Cancelar </button>
             </form>
         </div>
     </body>

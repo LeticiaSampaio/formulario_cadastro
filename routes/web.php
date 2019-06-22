@@ -27,6 +27,8 @@ Route::post('/cadastro/inserir', 'FormularioController@inserir');
 
 Route::get('/cadastro/alterar/{id}', 'FormularioController@mostrar_alterar');
 
-Route::post('/cadastro/alterar/{id}', 'FormularioController@alterar');
+Route::post('/cadastro/alterar', 'FormularioController@alterar');
 
 Route::get('/cadastro/excluir/{id}', 'FormularioController@excluir');
+
+Route::get('/cadastro/curriculo/{id}', 'FormularioController@curriculo');

@@ -30,7 +30,7 @@ class FormularioController extends Controller
 		return view('formulario.inserir');
 	}
 
-	public function inserir(){
+	public function inserir(Request $request){
         // Criando um novo objeto do tipo Formulario
         $formulario = new Formulario();
 
@@ -38,13 +38,13 @@ class FormularioController extends Controller
         $formulario->nome = Input::get('nome');
         $formulario->email = Input::get('email');
         $formulario->descricao = Input::get('descricao');
-        $formulario->upload = Input::get('upload');
+        $formulario->descricao = Input::get('curriculo');
    
         // Salvando no banco de dados
         $formulario->save();
 
         // Criado uma mensagem para o usuário
-        $mensagem = "Cadastro realizado com sucesso";
+        $mensagem = "Cadastro realizado com sucesso!";
 
         // Chamando a view formulario.inserir e enviando a mensagem criada
         return view('formulario.inserir')->with('mensagem', $mensagem);
@@ -59,18 +59,27 @@ class FormularioController extends Controller
         return view('formulario.alterar')->with('formulario', $formulario);
     }
 
-    public function alterar(Request $request, $id){
-        //$id = Input::get('id');
+    public function alterar(Request $request){
+        $id = Input::get('id');
         
         $formulario = Formulario::find($id);
         
+        //$formulario->nome = Input::get('nome');
         $formulario->nome = $request->nome;
         $formulario->email = $request->email;
         $formulario->descricao = $request->descricao;
-        $formulario->upload = $request->upload;
+        if($request->hasFile('curriculo')){
+            Storage::delete($formulario->upload);
+            $nome = uniqid(date('HisYmd'));
+            $extensao = $request->upload->extension();
+            $nomeArquivo = "{$nome}.{$extensao}";
+            $extensao = $request->upload->storeAs('curriculo',$nomeArquivo);
+            $upload = $request->upload->storeAs('curriculo',$nomeArquivo);
+            $formulario->upload = $upload;
+        }
 
-        $formulario->save();
-
+        $formulario->save();        
+        
         $mensagem = "Cadastro alterado com sucesso!";
         $formularios = Formulario::all();
         return view('formulario.pesquisar')->with('mensagem', $mensagem)->with('formularios', $formularios);
@@ -92,5 +101,14 @@ class FormularioController extends Controller
 
         // Retornando a view formulario.pesquisar
         return view('formulario.pesquisar')->with('mensagem', $mensagem)->with('formularios', $formularios);
+    }
+
+    public function curriculo($id){
+
+    	// Busca no banco o registro com o id recebido
+        $formulario = Formulario::find($id);
+        
+        // Envia os dados deste registro a view formulario.alterar
+        return view('formulario.curriculo')->with('formulario', $formulario);
     }
 }

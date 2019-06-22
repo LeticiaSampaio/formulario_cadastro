@@ -8,13 +8,15 @@
 	
 	<div class="container">
 		    
-		<h1 class="mt-2">Cadastros</h1>
+		<h1 class="mt-2">Cadastros </h1>
         <table class="table mt-2 text-center">
             <tr>
                 <th>Id</th>
                 <th>Nome</th>
                 <th>Email</th>
                 <th class="text-left">Descrição</th>
+                <th>Curriculo</th>
+
             </tr>
             @foreach ($formularios as $f)
                 <tr>
@@ -22,6 +24,7 @@
                     <td>{{$f->nome}}</td>
                     <td>{{$f->email}}</td>
                     <td class="text-left"> {{$f->descricao}}</td>
+                    <td><a href="/cadastro/curriculo/{{$f->id}}"><button class="btn btn-primary mt-2">Ver</button></a></td>
                 </tr>
             @endforeach
         </table>
