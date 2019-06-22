@@ -14,3 +14,19 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/cadastro', 'FormularioController@cadastros');
+
+Route::get('/cadastro/pesquisar', 'FormularioController@pesquisar');
+
+Route::post('/cadastro/pesquisar', 'FormularioController@pesquisar');
+
+Route::get('/cadastro/inserir', 'FormularioController@mostrar_inserir');
+
+Route::post('/cadastro/inserir', 'FormularioController@inserir');
+
+Route::get('/cadastro/alterar/{id}', 'FormularioController@mostrar_alterar');
+
+Route::post('/cadastro/alterar/{id}', 'FormularioController@alterar');
+
+Route::get('/cadastro/excluir/{id}', 'FormularioController@excluir');
